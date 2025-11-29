@@ -1,13 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router"
 import Home from "./pages/home/Home";
-import About from "./pages/about/About";
-import Contact from "./pages/contact/Contact";
 import NotFound from "./pages/not-found/NotFound";
 import RootLayout from "./components/RootLayout";
-
-//tailwind css // routing basic concept
-
-// man path '/'
+import About from "./pages/about/About";
+import Contact from "./pages/contact/Contact";
+import API from "./pages/API";
+import MealCategories from "./pages/meals/MealCategories";
 
 export default function App() {
 
@@ -18,17 +16,26 @@ export default function App() {
       children: [
         {
           index: true,
-          element: <Home />
+          element: <Home /> 
         },
-
         {
           path: 'about',
-          element: <About />
+          element: <About/>
+        },
+        {
+          path: 'api',
+          element: <API/>
         },
         {
           path: 'contact',
-          element: <Contact />
+          element:<Contact/>
+
         },
+        {
+          path:'/meals',
+          element:<MealCategories/>
+        }
+
       ]
     },
 
