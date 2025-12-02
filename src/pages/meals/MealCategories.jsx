@@ -2,6 +2,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { design } from "@/lib/design";
+import clsx from "clsx";
+
 
 
 /**
@@ -42,28 +45,27 @@ export default function MealCategory() {
       return <h1>{err.message}</h1>
     }
   return (
-    <div className="grid grid-cols-4 gap-10 mt-5">
+    <div className={"gap-5 mt-5 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"}> 
+     
       {data && data.map((cat) =>{
         return (
-          <Card className='max-w-md pt-0' key={cat.strCategory}>
+          <Card className='max-w-md pt-0 flex flex-col' key={cat.strCategory}>
           <CardContent className='py-6'>
             <img src={cat.strCategoryThumb}   alt={cat.strCategoryThumb}
-              className='aspect-video h-70 rounded-t-xl object-cover w-full cursor-pointer'
+              className="aspect-video h-70 rounded-t-xl object-cover w-full cursor-pointer"
             />
           </CardContent>
           <CardHeader>
             <CardTitle className="text-3xl font-medium cursor-pointer" >{cat.strCategory}</CardTitle>
             <CardDescription className="line-clamp-5">{cat.strCategoryDescription}</CardDescription>
           </CardHeader>
-          <CardFooter className='gap-3 max-sm:flex-col max-sm:items-stretch'>
-            <Button variant={'outline'} className="text-white">Recipe</Button>
-            <Button variant={'outline'} className="text-white">Ingredients</Button>
+          <CardFooter className='gap-3 max-sm:flex-col max-sm:items-stretch mt-auto'>
+            <Button variant={'outline'} className="text-white cursor-pointer">Recipe</Button>
+            <Button variant={'outline'} className="text-white cursor-pointer">Ingredients</Button>
           </CardFooter>
         </Card>
         )
       })}
-
-
     </div>
 
   )

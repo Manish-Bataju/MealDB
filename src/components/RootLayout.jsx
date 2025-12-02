@@ -1,11 +1,12 @@
 import { Outlet } from "react-router";
 import Header from "./Header";
+import { design } from "@/lib/design";
 
 export default function RootLayout() {
   return (
-    <div className="p-4">
+    <div className= "m-5" >
       <Header />
-      <main className="">
+      <main className=" ">
         <Outlet />
       </main>
       
