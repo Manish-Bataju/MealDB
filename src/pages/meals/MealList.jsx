@@ -5,7 +5,7 @@ import { useNavigate, useSearchParams } from "react-router"
 export default function MealList() {
   const [params, setParams] = useSearchParams();
 
-  const[data, setData] = useState([]);
+  const [data, setData] = useState([]);
   const [load, setLoad] = useState(false);
   const [err, setErr] = useState(null);
   const nav = useNavigate();
@@ -15,7 +15,7 @@ export default function MealList() {
       setLoad(true);
       const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php`, {params: {c: params.get(`category`)} });
       setLoad(false);
-      setData(response.data.meals);
+      setData(response.data.meals || []);
      } catch (err) {
       setLoad(false);
       setErr(err);
@@ -37,10 +37,10 @@ export default function MealList() {
   
 
   return (
-    <div className={'gap-5 mt-5 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'}>
-      {data && data.map((meal)=>{
+    <div className={'gap-3 mt-5 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-10'}>
+      {Array.isArray(data) && data.map((meal)=>{
         return ( 
-              <div className="mt-10" key={meal.idMeal}>
+              <div className="mt-5" key={meal.idMeal}>
                 {/* Header left aligned */}
                 <h1 className="text-2xl font-bold text-left text-white overflow-hidden line-clamp-1">
                   {meal.strMeal}  </h1>
@@ -50,8 +50,7 @@ export default function MealList() {
                   <img
                     src={meal.strMealThumb}
                     alt={meal.strMealThumb}
-                    className="rounded-lg shadow-lg w-64"
-                  />
+                    className="rounded-lg shadow-lg w-64"/>
                 </div>
               </div>
         )
