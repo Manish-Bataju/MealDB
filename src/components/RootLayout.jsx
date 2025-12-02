@@ -4,7 +4,7 @@ import { design } from "@/lib/design";
 
 export default function RootLayout() {
   return (
-    <div className= "m-5" >
+    <div className= "md:px-10 md:py-5 sm:px-8 sm:py-3 px-4 py-2" >
       <Header />
       <main className=" ">
         <Outlet />
