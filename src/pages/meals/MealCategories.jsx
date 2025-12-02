@@ -4,6 +4,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Button } from "@/components/ui/button";
 import { design } from "@/lib/design";
 import clsx from "clsx";
+import { useNavigate } from "react-router";
 
 
 
@@ -18,6 +19,7 @@ export default function MealCategory() {
   const[data, setData] = useState([]);
   const [load, setLoad] = useState(false);
   const [err, setErr] = useState(null);
+  const nav = useNavigate();
 
   const getData = async () =>{
     try {
@@ -46,7 +48,6 @@ export default function MealCategory() {
     }
   return (
     <div className={"gap-5 mt-5 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"}> 
-     
       {data && data.map((cat) =>{
         return (
           <Card className='max-w-md pt-0 flex flex-col' key={cat.strCategory}>
@@ -60,7 +61,7 @@ export default function MealCategory() {
             <CardDescription className="line-clamp-5">{cat.strCategoryDescription}</CardDescription>
           </CardHeader>
           <CardFooter className='gap-3 max-sm:flex-col max-sm:items-stretch mt-auto'>
-            <Button variant={'outline'} className="text-white cursor-pointer">Recipe</Button>
+            <Button onClick={() => nav(`/meal-list/?category=${cat.strCategory}`)} variant={'outline'} className="text-white cursor-pointer">Explore</Button>
             <Button variant={'outline'} className="text-white cursor-pointer">Ingredients</Button>
           </CardFooter>
         </Card>
